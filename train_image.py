@@ -38,7 +38,7 @@ model.add(Flatten())
 model.add(Dense(64))
 model.add(Activation('relu'))
 model.add(Dropout(0.5))
-model.add(Dense(num_classes, activation='softmax')) # Change this to num_classes, otherwise it will only work with TWO classes. (Because of 'binary')
+model.add(Dense(num_classes, activation='softmax')) # Changed this to num_classes, otherwise it will only work with TWO classes. (Because of 'binary')
 model.add(Activation('sigmoid'))
 model.compile(loss='binary_crossentropy',
               optimizer='rmsprop',
@@ -70,4 +70,4 @@ model.fit_generator(
     validation_data=validation_generator,
     validation_steps=nb_validation_samples // batch_size)
 
-model.save('model_saved.h5') # Change this to just 'model.save', causes error otherwise. Solution found here: https://github.com/keras-team/keras/issues/6937
+model.save('model_saved.h5') # Changed this to just 'model.save', causes error otherwise. Solution found here: https://github.com/keras-team/keras/issues/6937
