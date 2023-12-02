@@ -15,6 +15,9 @@ model = load_model('model_saved.h5')
 test_dir = 'test'
 img_size = (800, 240)
 
+correct_guesses = 0
+total_guesses = 0
+
 test_datagen = ImageDataGenerator(rescale= 1. / 255)
 
 test_generator = test_datagen.flow_from_directory(
@@ -36,5 +39,13 @@ for i, prediction in enumerate(predictions):
 
     true_class_index = int(test_generator.classes[i])
     true_class = class_labels[true_class_index]
+    
+    if (true_class == predicted_class):
+        correct_guesses += 1
+    
+    total_guesses += 1
 
     print(f"Image {i + 1}: Predicted class: {predicted_class}, True class: {true_class}")
+
+accuracy = (correct_guesses / total_guesses) * 100
+print(f"Accuracy: {accuracy}%")
